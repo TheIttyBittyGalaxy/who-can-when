@@ -1,0 +1,166 @@
+/* LAYOUT */
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	font-family: sans-serif;
+	font-size: 110%;
+	--shade-1: white;
+	--shade-2: #d6d5c9;
+	--shade-3: #b9baa3;
+	--shade-4: #a8a994;
+	--shade-5: #351431;
+}
+
+body {
+	display: flex;
+	margin: 0;
+	height: 100vh;
+}
+
+#data-area,
+#table-area {
+	padding: 2ch;
+}
+
+#data-area {
+	flex-shrink: 0;
+	background-color: var(--shade-4);
+	overflow-y: scroll;
+}
+
+#table-area {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--shade-3);
+	flex-grow: 1;
+	font-size: 110%;
+}
+
+h1 {
+	margin: 0;
+	font-size: 200%;
+}
+
+.events-panel,
+.person-panel {
+	display: grid;
+	gap: 1ch 0;
+	margin: 2ch 0;
+}
+
+.input-row {
+	display: grid;
+	grid-template-columns: subgrid;
+	background-color: var(--shade-2);
+	border-radius: 1ch;
+}
+
+.person-row [name="name"] {
+	font-weight: bold;
+}
+
+.events-panel {
+	grid-template-columns: min-content min-content min-content min-content 5ch;
+}
+
+.events-panel .input-row {
+	grid-column: span 5;
+}
+
+.person-row {
+	grid-template-columns: 1fr 5ch;
+	margin: 2ch 0;
+}
+
+.person-panel {
+	grid-template-columns: min-content min-content min-content 5ch;
+}
+
+.person-panel .input-row {
+	grid-column: span 4;
+}
+
+button.input-row {
+	display: block;
+}
+
+/* Inputs */
+input {
+	width: auto;
+}
+
+input,
+select,
+button {
+	display: block;
+	color: inherit;
+	font: inherit;
+	padding: 1ch;
+	border: none;
+	background-color: transparent;
+	transition: 0.1s background-color, 0.1s color;
+}
+
+input:first-child,
+select:first-child,
+button:first-child {
+	border-top-left-radius: 1ch;
+	border-bottom-left-radius: 1ch;
+}
+
+input:last-child,
+select:last-child,
+button:last-child {
+	border-top-right-radius: 1ch;
+	border-bottom-right-radius: 1ch;
+}
+
+input:hover,
+select:hover,
+button:hover,
+input:focus,
+select:focus,
+button:focus {
+	background-color: var(--shade-1);
+	outline: none;
+}
+
+.remove:hover,
+.remove:focus {
+	background-color: var(--shade-5);
+	color: white;
+	outline: none;
+}
+
+/* TABLE */
+td {
+	padding: 0.5ch;
+}
+
+td.available {
+	background-color: var(--shade-2);
+	color: var(--shade-4);
+	text-align: center;
+}
+
+td.event,
+td.person {
+	background-color: var(--shade-5);
+	color: white;
+	font-weight: bold;
+}
+
+td.event span {
+	-ms-writing-mode: tb-rl;
+	-webkit-writing-mode: vertical-rl;
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+	white-space: nowrap;
+}
+
+.person-row:hover td.available {
+	background-color: var(--shade-1);
+}
