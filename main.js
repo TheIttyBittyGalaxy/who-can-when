@@ -8,38 +8,44 @@ const dayOptions = ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"];
 const data = JSON.parse(localStorage.getItem("data")) || {
 	events: [
 		{
-			name: "Workshop 1",
-			day: 1,
-			start: 15,
-			end: 18,
-		},
-		{
-			name: "Workshop 2",
-			day: 3,
-			start: 11,
+			name: "Event 1",
+			day: 0,
+			start: 9,
 			end: 12,
 		},
 		{
-			name: "Workshop 3",
-			day: 4,
-			start: 15,
-			end: 18,
+			name: "Event 2",
+			day: 0,
+			start: 12,
+			end: 17,
+		},
+		{
+			name: "Event 3",
+			day: 1,
+			start: 9,
+			end: 12,
+		},
+		{
+			name: "Event 4",
+			day: 1,
+			start: 12,
+			end: 17,
 		},
 	],
 
 	people: [
 		{
-			name: "Joe Blogs",
+			name: "Person A",
 			busy: [
-				{ day: 1, start: 14, end: 16 },
-				{ day: 1, start: 16, end: 18 },
+				{ day: 0, start: 9, end: 10 },
+				{ day: 4, start: 11, end: 12 },
 			],
 		},
 		{
-			name: "Jo Vlogs",
+			name: "Person B",
 			busy: [
-				{ day: 3, start: 10, end: 11 },
-				{ day: 4, start: 16, end: 18 },
+				{ day: 1, start: 10, end: 12 },
+				{ day: 1, start: 16, end: 18 },
 			],
 		},
 	],
