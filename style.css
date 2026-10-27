@@ -6,17 +6,14 @@
 :root {
 	font-family: sans-serif;
 	font-size: 110%;
-	--shade-1: white;
-	--shade-2: #d6d5c9;
-	--shade-3: #b9baa3;
-	--shade-4: #a8a994;
-	--shade-5: #351431;
 }
 
 body {
 	display: flex;
 	margin: 0;
 	height: 100vh;
+	background: #222;
+	color: white;
 }
 
 #data-area,
@@ -26,7 +23,6 @@ body {
 
 #data-area {
 	flex-shrink: 0;
-	background-color: var(--shade-4);
 	overflow-y: scroll;
 }
 
@@ -34,7 +30,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--shade-3);
+	background-color: #000;
 	flex-grow: 1;
 	font-size: 110%;
 }
@@ -42,20 +38,21 @@ body {
 h1 {
 	margin: 0;
 	font-size: 200%;
+	padding: 0 1rch;
 }
 
 .events-panel,
 .person-panel {
 	display: grid;
 	gap: 1ch 0;
-	margin: 2ch 0;
 }
 
 .input-row {
 	display: grid;
 	grid-template-columns: subgrid;
-	background-color: var(--shade-2);
+	background-color: #555;
 	border-radius: 1ch;
+	box-shadow: 0px 0px 8px 0px #0000004a;
 }
 
 .person-row [name="name"] {
@@ -63,7 +60,8 @@ h1 {
 }
 
 .events-panel {
-	grid-template-columns: min-content min-content min-content min-content 5ch;
+	grid-template-columns: min-content min-content min-content min-content 4ch;
+	margin: 2ch 0;
 }
 
 .events-panel .input-row {
@@ -71,12 +69,14 @@ h1 {
 }
 
 .person-row {
-	grid-template-columns: 1fr 5ch;
-	margin: 2ch 0;
+	grid-template-columns: 1fr 4ch;
+	margin: 1ch 0;
 }
 
 .person-panel {
-	grid-template-columns: min-content min-content min-content 5ch;
+	margin-bottom: 4ch;
+	grid-template-columns: min-content min-content min-content 4ch;
+	justify-content: right;
 }
 
 .person-panel .input-row {
@@ -92,6 +92,10 @@ input {
 	width: auto;
 }
 
+input[type="text"] {
+	width: 100%;
+}
+
 input,
 select,
 button {
@@ -101,7 +105,7 @@ button {
 	padding: 1ch;
 	border: none;
 	background-color: transparent;
-	transition: 0.1s background-color, 0.1s color;
+	transition: 0.06s background-color, 0.06s color;
 }
 
 input:first-child,
@@ -124,15 +128,18 @@ button:hover,
 input:focus,
 select:focus,
 button:focus {
-	background-color: var(--shade-1);
+	background-color: #444;
 	outline: none;
 }
 
 .remove:hover,
 .remove:focus {
-	background-color: var(--shade-5);
-	color: white;
-	outline: none;
+	background-color: rgb(182, 23, 55);
+}
+
+.create:hover,
+.create:focus {
+	background-color: rgb(21, 100, 180);
 }
 
 /* TABLE */
@@ -141,15 +148,13 @@ td {
 }
 
 td.available {
-	background-color: var(--shade-2);
-	color: var(--shade-4);
+	background-color: #222;
 	text-align: center;
 }
 
 td.event,
 td.person {
-	background-color: var(--shade-5);
-	color: white;
+	background-color: #222;
 	font-weight: bold;
 }
 
@@ -162,5 +167,5 @@ td.event span {
 }
 
 .person-row:hover td.available {
-	background-color: var(--shade-1);
+	background-color: #555;
 }

@@ -105,10 +105,22 @@ function renderData() {
 	tableArea.appendChild(tbl);
 }
 
+// NOTE: Code based on: https://stackoverflow.com/questions/118241/calculate-text-width-with-javascript
+const textWidthCanvas = document.createElement("canvas");
 function updateInputWidth(input) {
-	// TODO: Improve
-	// https://stackoverflow.com/questions/118241/calculate-text-width-with-javascript
-	input.style.minWidth = input.value.toString().length + "ch";
+	// NOTE: The input is set to have padding 1ch and box-sizing: border-box. 
+	// Adding an extra 00 of widths accounts for the 1ch of padding on either side.
+	const text = input.value.toString() + "00"; 
+
+	const ctx = textWidthCanvas.getContext("2d");
+	const fontWeight = window.getComputedStyle(input, null).getPropertyValue('font-weight') || 'normal';
+	const fontSize   = window.getComputedStyle(input, null).getPropertyValue('font-size')   || '16px';
+	const fontFamily = window.getComputedStyle(input, null).getPropertyValue('font-family') || 'Arial';
+	ctx.font = `${fontWeight} ${fontSize} ${fontFamily}`;
+	console.log(input, `${fontWeight} ${fontSize} ${fontFamily}`)
+
+	const textWidth = ctx.measureText(text).width;
+	input.style.minWidth = textWidth + "px";
 }
 
 function formatTime(value) {
@@ -159,20 +171,25 @@ function addInput(row, data, label, value, type) {
 			data[label] = deformatTime(input.value);
 			renderData();
 		});
-	} else {
-		input.type = "text";
-		input.name = label;
-		input.value = value;
-		updateInputWidth(input);
 
-		input.addEventListener("input", () => {
-			data[label] = input.value;
-			updateInputWidth(input);
-			renderData();
-		});
+		row.appendChild(input);
+		return
 	}
+	
+	input.type = "text";
+	input.name = label;
+	input.value = value;
+
+	input.addEventListener("input", () => {
+		data[label] = input.value;
+		updateInputWidth(input);
+		renderData();
+	});
 
 	row.appendChild(input);
+	setTimeout(() => {
+		updateInputWidth(input);
+	}, 20);
 }
 
 function renderEventsInput(focusLatestEvent) {
@@ -212,7 +229,7 @@ function renderEventsInput(focusLatestEvent) {
 
 		create.addEventListener("click", () => {
 			data.events.push({
-				name: "",
+				name: "Event " + (data.events.length + 1),
 				day: 0,
 				start: 9,
 				end: 10,
@@ -231,6 +248,7 @@ function renderEventsInput(focusLatestEvent) {
 		const nameInputs = panel.querySelectorAll(".name");
 		const last = nameInputs[nameInputs.length - 1];
 		last.focus();
+		last.select();
 	}
 }
 
@@ -322,7 +340,7 @@ function renderPeopleInput(focusLatestPerson, focusLatestPeriodForPerson) {
 
 		create.addEventListener("click", () => {
 			data.people.push({
-				name: "",
+				name: "Person " + (data.people.length + 1),
 				busy: [],
 			});
 			renderData();
@@ -336,6 +354,7 @@ function renderPeopleInput(focusLatestPerson, focusLatestPeriodForPerson) {
 		const nameInputs = peopleArea.querySelectorAll(".person-row .name");
 		const last = nameInputs[nameInputs.length - 1];
 		last.focus();
+		last.select();
 	}
 
 	if (focusLatestPeriodForPerson) {
