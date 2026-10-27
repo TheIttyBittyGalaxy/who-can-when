@@ -113,10 +113,11 @@ function updateInputWidth(input) {
 	const text = input.value.toString() + "00"; 
 
 	const ctx = textWidthCanvas.getContext("2d");
-	const fontWeight = window.getComputedStyle(input, null).getPropertyValue('font-weight') || 'normal';
-	const fontSize   = window.getComputedStyle(input, null).getPropertyValue('font-size')   || '16px';
-	const fontFamily = window.getComputedStyle(input, null).getPropertyValue('font-family') || 'Arial';
+	const fontWeight = input.name == "name" ? "bold" : "normal";
+	const fontSize   = window.getComputedStyle(document.body, null).getPropertyValue("font-size")   || "16px";
+	const fontFamily = window.getComputedStyle(document.body, null).getPropertyValue("font-family") || "Arial";
 	ctx.font = `${fontWeight} ${fontSize} ${fontFamily}`;
+	console.log(input, ctx.font);
 
 	const textWidth = ctx.measureText(text).width;
 	input.style.minWidth = textWidth + "px";
@@ -185,10 +186,8 @@ function addInput(row, data, label, value, type) {
 		renderData();
 	});
 
+	updateInputWidth(input);
 	row.appendChild(input);
-	setTimeout(() => {
-		updateInputWidth(input);
-	}, 20);
 }
 
 function renderEventsInput(focusLatestEvent) {
