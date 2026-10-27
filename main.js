@@ -117,7 +117,6 @@ function updateInputWidth(input) {
 	const fontSize   = window.getComputedStyle(document.body, null).getPropertyValue("font-size")   || "16px";
 	const fontFamily = window.getComputedStyle(document.body, null).getPropertyValue("font-family") || "Arial";
 	ctx.font = `${fontWeight} ${fontSize} ${fontFamily}`;
-	console.log(input, ctx.font);
 
 	const textWidth = ctx.measureText(text).width;
 	input.style.minWidth = textWidth + "px";

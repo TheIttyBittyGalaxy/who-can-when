@@ -2,7 +2,6 @@
 
 * {
 	box-sizing: border-box;
-	transition: .2s background-color, .2s border-color, .2s color;
 }
 
 :root {
@@ -122,13 +121,21 @@ button {
 	background-color: transparent;
 }
 
+.input-row,
+input,
+select,
+button {
+	transition: .14s background-color, .14s border-color, .14s color;
+}
+
 input:hover,
 select:hover,
 button:hover,
 input:focus,
 select:focus,
 button:focus {
-	background-color: #eee;
+	background-color: #f0f0f0;
+	color: dodgerblue;
 	outline: none;
 }
 
