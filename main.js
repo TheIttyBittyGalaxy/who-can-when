@@ -117,7 +117,6 @@ function updateInputWidth(input) {
 	const fontSize   = window.getComputedStyle(input, null).getPropertyValue('font-size')   || '16px';
 	const fontFamily = window.getComputedStyle(input, null).getPropertyValue('font-family') || 'Arial';
 	ctx.font = `${fontWeight} ${fontSize} ${fontFamily}`;
-	console.log(input, `${fontWeight} ${fontSize} ${fontFamily}`)
 
 	const textWidth = ctx.measureText(text).width;
 	input.style.minWidth = textWidth + "px";
@@ -209,7 +208,6 @@ function renderEventsInput(focusLatestEvent) {
 
 		const remove = document.createElement("button");
 		remove.classList.add("remove");
-		remove.innerText = "X";
 		row.appendChild(remove);
 
 		remove.addEventListener("click", () => {
@@ -225,7 +223,6 @@ function renderEventsInput(focusLatestEvent) {
 		const create = document.createElement("button");
 		create.classList.add("create");
 		create.classList.add("input-row");
-		create.innerText = "+";
 
 		create.addEventListener("click", () => {
 			data.events.push({
@@ -268,7 +265,6 @@ function renderPeopleInput(focusLatestPerson, focusLatestPeriodForPerson) {
 
 			const remove = document.createElement("button");
 			remove.classList.add("remove");
-			remove.innerText = "X";
 			row.appendChild(remove);
 
 			remove.addEventListener("click", () => {
@@ -297,7 +293,6 @@ function renderPeopleInput(focusLatestPerson, focusLatestPeriodForPerson) {
 
 			const remove = document.createElement("button");
 			remove.classList.add("remove");
-			remove.innerText = "X";
 			row.appendChild(remove);
 
 			remove.addEventListener("click", () => {
@@ -313,7 +308,6 @@ function renderPeopleInput(focusLatestPerson, focusLatestPeriodForPerson) {
 			const create = document.createElement("button");
 			create.classList.add("create");
 			create.classList.add("input-row");
-			create.innerText = "+";
 
 			create.addEventListener("click", () => {
 				person.busy.push({
@@ -336,7 +330,6 @@ function renderPeopleInput(focusLatestPerson, focusLatestPeriodForPerson) {
 		create.classList.add("create");
 		create.classList.add("input-row");
 		create.style.width = "100%";
-		create.innerText = "+";
 
 		create.addEventListener("click", () => {
 			data.people.push({

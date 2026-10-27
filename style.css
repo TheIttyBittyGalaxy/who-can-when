@@ -1,10 +1,12 @@
-/* LAYOUT */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 * {
 	box-sizing: border-box;
+	transition: .2s background-color, .2s border-color, .2s color;
 }
 
 :root {
-	font-family: sans-serif;
+	font-family: "Lato", sans-serif;
 	font-size: 110%;
 }
 
@@ -12,8 +14,8 @@ body {
 	display: flex;
 	margin: 0;
 	height: 100vh;
-	background: #222;
-	color: white;
+	background: #bbb;
+	color: black;
 }
 
 #data-area,
@@ -24,13 +26,14 @@ body {
 #data-area {
 	flex-shrink: 0;
 	overflow-y: scroll;
+	background-color: #ddd;
+	box-shadow: 0px 0px 16px 0px #0000004a;
 }
 
 #table-area {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #000;
 	flex-grow: 1;
 	font-size: 110%;
 }
@@ -38,7 +41,14 @@ body {
 h1 {
 	margin: 0;
 	font-size: 200%;
-	padding: 0 1rch;
+}
+
+#people-area,
+#events-area {
+	display: flex;
+	flex-direction: column;
+	gap: 1ch;
+	margin: 2ch 0;
 }
 
 .events-panel,
@@ -50,18 +60,27 @@ h1 {
 .input-row {
 	display: grid;
 	grid-template-columns: subgrid;
-	background-color: #555;
-	border-radius: 1ch;
-	box-shadow: 0px 0px 8px 0px #0000004a;
+	background-color: #fff;
+	border: 1.5px solid #fff;
 }
 
-.person-row [name="name"] {
+.input-row:hover,
+.input-row:has(:focus) {
+	border-color: dodgerblue;
+}
+
+.input-row:has(.remove:hover),
+.input-row:has(.remove:focus) {
+	border-color: crimson;
+	color: white;
+}
+
+[name="name"] {
 	font-weight: bold;
 }
 
 .events-panel {
 	grid-template-columns: min-content min-content min-content min-content 4ch;
-	margin: 2ch 0;
 }
 
 .events-panel .input-row {
@@ -70,11 +89,9 @@ h1 {
 
 .person-row {
 	grid-template-columns: 1fr 4ch;
-	margin: 1ch 0;
 }
 
 .person-panel {
-	margin-bottom: 4ch;
 	grid-template-columns: min-content min-content min-content 4ch;
 	justify-content: right;
 }
@@ -87,7 +104,6 @@ button.input-row {
 	display: block;
 }
 
-/* Inputs */
 input {
 	width: auto;
 }
@@ -105,21 +121,6 @@ button {
 	padding: 1ch;
 	border: none;
 	background-color: transparent;
-	transition: 0.06s background-color, 0.06s color;
-}
-
-input:first-child,
-select:first-child,
-button:first-child {
-	border-top-left-radius: 1ch;
-	border-bottom-left-radius: 1ch;
-}
-
-input:last-child,
-select:last-child,
-button:last-child {
-	border-top-right-radius: 1ch;
-	border-bottom-right-radius: 1ch;
 }
 
 input:hover,
@@ -128,33 +129,63 @@ button:hover,
 input:focus,
 select:focus,
 button:focus {
-	background-color: #444;
+	background-color: #eee;
 	outline: none;
 }
 
-.remove:hover,
-.remove:focus {
-	background-color: rgb(182, 23, 55);
+.input-row:has(.remove:hover) input,
+.input-row:has(.remove:hover) select,
+.input-row:has(.remove:hover) button,
+.input-row:has(.remove:focus) input,
+.input-row:has(.remove:focus) select,
+.input-row:has(.remove:focus) button {
+	background-color: crimson;
+}
+
+.create {
+	background-color: transparent;
+	border: 1.5px solid black;
+	color: black;
 }
 
 .create:hover,
 .create:focus {
-	background-color: rgb(21, 100, 180);
+	background-color: dodgerblue;
+	border-color: dodgerblue;
+	color: white;
 }
 
-/* TABLE */
+.create::before {
+	content: "🞡";
+}
+
+.remove:hover,
+.remove:focus {
+	background-color: crimson;
+	color: white;
+}
+
+.remove::before {
+	content: "✕";
+}
+
 td {
 	padding: 0.5ch;
 }
 
+.person-row td {
+	background-color: #ddd;
+}
+
 td.available {
-	background-color: #222;
+	background-color: white;
+	color: dodgerblue;
 	text-align: center;
 }
 
 td.event,
 td.person {
-	background-color: #222;
+	background-color: #fff;
 	font-weight: bold;
 }
 
@@ -167,5 +198,6 @@ td.event span {
 }
 
 .person-row:hover td.available {
-	background-color: #555;
+	background-color: dodgerblue;
+	color: white;
 }
